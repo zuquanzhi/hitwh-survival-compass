@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-label="哈威求生指北：书页与远方">
+<rect width="128" height="128" rx="29" fill="#102b45"/>
+<path d="M18 38c18-4 35 0 46 12 11-12 28-16 46-12v49c-19-4-33 0-46 12-13-12-27-16-46-12z" fill="#f6efdf"/>
+<path d="M64 51v43c-4-17-1-28 0-43z" fill="#102b45"/>
+<path d="M24 48c13-2 25 1 34 9M104 48c-13-2-25 1-34 9" fill="none" stroke="#5caaa8" stroke-width="4" stroke-linecap="round"/>
+<path d="M64 13l2.4 7.6L74 23l-7.6 2.4L64 33l-2.4-7.6L54 23l7.6-2.4z" fill="#e8c785"/>
+</svg>
