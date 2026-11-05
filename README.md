@@ -6,7 +6,7 @@
 
 > 方向仅供参考，人生请自行探索。
 
-[开始阅读](docs/start.md) · [参与共建](CONTRIBUTING.md) · GitHub 仓库：尚未创建，发布时请在 GitBook 站点设置中添加仓库链接。
+[开始阅读](docs/start.md) · [参与共建](CONTRIBUTING.md) · [GitHub 仓库](https://github.com/zuquanzhi/hitwh-survival-compass)
 
 ## 关于项目
 

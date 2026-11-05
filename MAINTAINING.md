@@ -10,7 +10,7 @@ GitHub 保存 Markdown 和历史，贡献通过 Fork → PR → Review → 合�
 
 ## 首次发布：由仓库及 GitBook 管理员操作
 
-1. 确定内容许可证和社区联系方式，再创建公开 GitHub 仓库 `hitwh-survival-compass`。关联本地仓库并由授权人员推送 `main`；当前项目尚未推送。
+1. 确定内容许可证和社区联系方式。GitHub 仓库已配置为 `zuquanzhi/hitwh-survival-compass`；由授权人员推送本地 `main`，并确认仓库为公开状态。
 2. 在 GitHub 仓库 Settings → General 启用 squash merging。Settings → Rules → Rulesets（或 Branches）为 `main` 要求 PR 和至少一名审阅者，并按需要要求检查通过、限制绕过；确保维护者实际无法直接推送，注意管理员和 GitBook 应用的绕过权限。先确认保护规则与 Git Sync 的双向写入兼容，遇冲突时不要放宽 PR 审核而未评估。
 3. 在 GitBook 创建组织、Space 和公开 Docs site，选择免费方案。安装 GitHub Sync 应用时优先只授权该仓库；在 Space 选择 Set up Git Sync，选择仓库和 `main`，首次同步方向选 **GitHub → GitBook**，避免空 Space 覆盖已有文件。
 4. 将该 Space 加入 Docs site，发布到平台提供的免费地址。在站点设置中填写中文标题、描述和语言，添加真实 GitHub 仓库链接，并检查编辑入口、搜索、移动端和主题选项。免费计划的界面选项以实际账户为准。

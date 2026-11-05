@@ -10,7 +10,7 @@
 4. 说明修改内容、依据及需要关注的问题，回应维护者的 Review。
 5. 维护者审核通过后合并，Git Sync 正常连接时网站会自动更新。
 
-不熟悉 Git 的同学也可以在 Fork 后使用 GitHub 网页编辑文件并发起 PR。仓库地址将在创建后补充。
+不熟悉 Git 的同学也可以在 Fork 后使用 GitHub 网页编辑文件并发起 PR。项目仓库：[hitwh-survival-compass](https://github.com/zuquanzhi/hitwh-survival-compass)。
 
 ## 编写规范
 
