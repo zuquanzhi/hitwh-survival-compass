@@ -1,0 +1,13 @@
+$schema: https://api.gitbook.com/gitbook-docs.yaml
+version: 1
+site:
+  title: 哈威求生指北
+  structure:
+    - type: space
+      key: handbook
+      title: 哈威求生指北
+      path: handbook
+      default: true
+      content:
+        directory: .
+        language: zh
