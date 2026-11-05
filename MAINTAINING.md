@@ -1,39 +1,51 @@
-# 维护与发布
+# 维护与交接
 
-## 架构与方案
+本手册以 GitHub 仓库中的 Markdown 为内容来源，`main` 是发布分支。贡献者从 Fork 提交 PR，维护者审核并合并；GitBook Git Sync 将 `main` 同步到公开站点。站点级映射由 `gitbook-docs.yaml` 管理，`SUMMARY.md` 决定手册导航。
 
-站点级同步配置位于 `gitbook-docs.yaml`，仓库根目录映射为一个手册空间，`SUMMARY.md` 管理页面导航。`assets/compass.svg` 是项目指南针标识源文件。
+- 仓库：[hitwh-survival-compass](https://github.com/zuquanzhi/hitwh-survival-compass)
+- 站点：[哈威求生指北](https://hitwh-survival-compass.gitbook.io/hitwh-survival-compass-docs/)
+- 审核与写作要求：[贡献指南](CONTRIBUTING.md)
 
-GitHub 保存 Markdown 和历史，贡献通过 Fork → PR → Review → 合并到 `main`；GitBook 的 Git Sync 将 `main` 的内容同步到公开站点。Git Sync 是双向的，维护者应只通过 GitHub PR 修改内容，不在 GitBook 编辑器直接修改或合并，以免绕过审核。站点外观和发布设置在 GitBook 管理。无本地构建步骤或运行时依赖。
+Git Sync 是双向的。为遵守 PR 流程，内容、目录和站点映射应通过 GitHub PR 修改，不在 GitBook 编辑器直接更改已同步内容或合并变更。GitBook 的外观、站点公开状态和同步配置在平台管理，设置变更应由维护者记录。
 
-交大生存手册采用 Markdown、README 和 SUMMARY，并使用 GitBook；CS First Aid 则使用 pnpm workspace 等较复杂的项目结构。本项目只借鉴文档组织和阅读体验。GitBook 免费方案包含公开站点、全文搜索与 Git Sync，只有一个用户席位；GitHub PR 贡献者不需要 GitBook 席位。免费版不包括站点 PDF 导出和自定义域名，具体以开通时的价格页为准。GitBook 是托管服务，其可用性、价格和功能可能变化；通用 Markdown 与 Git 历史便于迁移。作为备选，Starlight 是静态站点方案，公开仓库可使用 GitHub Pages 和标准 GitHub Actions 免费额度，但需要维护构建和配置；当前不搭建第二套站点。
+## 审核与发布
 
-大陆校园网访问 GitHub、GitBook 及其静态资源的速度和稳定性可能因网络及时间而异，尚未进行校园网实测。发布后请在校内网、移动网络分别测试主页、搜索、图片和 GitHub 入口，再决定是否需要其他合规托管方式。
+1. 在 PR 中确认修改目的、适用范围、来源和时间。政策或数据应能追溯到原始来源；个人经验需标明背景，并尊重不同观点。
+2. 检查隐私、素材授权、相对链接、图片替代文字和 `SUMMARY.md`。不要把待核实内容当作事实，也不要要求贡献者公开不必要的个人信息。
+3. 查看自动检查结果，人工阅读页面；如 GitBook 提供 PR 预览，可核对桌面和移动端导航、首页与文章样式。检查通过不等于事实已核实。
+4. 请维护者完成 Review 并在 GitHub 合并，推荐使用 Squash Merge。记录必要的后续维护事项；不要在未审核的情况下绕开分支保护。
+5. 检查 GitBook 同步状态和公开站点，确认合并的内容、链接和导航更新。发生异常时，先记录 GitHub 提交、GitBook 同步状态和页面现象，再排查。
 
-## 首次发布：由仓库及 GitBook 管理员操作
+## 本地与自动检查
 
-1. 确定内容许可证和社区联系方式。GitHub 仓库已配置为 `zuquanzhi/hitwh-survival-compass`；由授权人员推送本地 `main`，并确认仓库为公开状态。
-2. 在 GitHub 仓库 Settings → General 启用 squash merging。Settings → Rules → Rulesets（或 Branches）为 `main` 要求 PR 和至少一名审阅者，并按需要要求检查通过、限制绕过；确保维护者实际无法直接推送，注意管理员和 GitBook 应用的绕过权限。先确认保护规则与 Git Sync 的双向写入兼容，遇冲突时不要放宽 PR 审核而未评估。
-3. 在 GitBook 创建组织和公开 Docs site，选择免费方案。站点级 Git Sync 需要仓库根目录中的 `gitbook-docs.yaml`；该文件已配置单一手册空间。安装 GitHub Sync 应用时优先只授权该仓库；在站点选择 Set up Git Sync，选择仓库和 `main`，首次同步方向选 **GitHub → GitBook**，避免空 Space 覆盖已有文件。
-4. 同步完成后，将站点发布到平台提供的免费地址。当前地址为 https://hitwh-survival-compass.gitbook.io/hitwh-survival-compass-docs/ 。在站点设置中填写中文标题、描述和语言，添加真实 GitHub 仓库链接，并检查编辑入口、搜索、移动端和主题选项。免费计划的界面选项以实际账户为准。
-5. 发起测试 PR，确认检查和审核流程；合并后确认 Git Sync 状态、站点页面和导航均更新。若未更新，检查 GitBook 同步日志、GitHub App 权限、分支保护及发布状态。
+在仓库根目录运行 `python scripts/check.py`（Windows 也可使用 `py -3 scripts/check.py`）。它只检查基础文件和简单相对 Markdown 链接；不验证锚点、外链可用性、图片呈现、事实、完整 Markdown 或实际同步。PR 和 `main` 的 GitHub Actions 运行相同检查；遇失败先阅读日志，修复后在同一 PR 追加提交。
 
-GitBook 管理员账号需要妥善交接；不要共享个人密码。GitHub 仓库应由多位可信维护者管理，未来可迁入独立 Organization。PR 合并后可用 Git 历史定位和回滚错误，再通过 PR 修复。
+## GitHub 配置
 
-## 本地检查
+由仓库管理员核实 Settings → General 中已启用 Squash Merge；在 Settings → Rules → Rulesets 或 Branches 配置 `main` 保护：要求 PR、审核及必要的状态检查，并检查管理员、GitBook App 和其他角色是否有绕过权限。界面选项和适用限制以账号当前状态为准。
 
-安装 Python 3 后在仓库根目录运行 `python scripts/check.py`。检查导航目标、相对 Markdown 链接与基本结构；它不是完整的 Markdown 渲染器，也不能替代 GitBook 实际同步和页面预览。CI 在 PR 和推送 main 时运行同一检查。
+Git Sync 具有双向写入能力。启用保护后，以测试 PR 验证 GitHub → GitBook 同步与 GitBook App 权限；若规则产生冲突，先确认原因与影响，避免为方便直接允许未经审核的内容进入 `main`。
 
-## 参考资料
+## GitBook 首次连接与恢复
 
-- [交大生存手册仓库](https://github.com/SurviveSJTU/SurviveSJTUManual)
-- [CS First Aid 仓库](https://github.com/AndyBRoswell/cs-first-aid)
-- [GitBook Git Sync 导入](https://gitbook.com/docs/guides/editing-and-publishing-documentation/import-or-migrate-your-content-to-gitbook-with-git-sync)
-- [GitBook 价格](https://www.gitbook.com/pricing)
-- [GitBook 开源项目方案](https://www.gitbook.com/solutions/open-source)
-- [GitHub Pages 限制](https://docs.github.com/en/pages/getting-started-with-github-pages/github-pages-limits)
-- [GitHub Actions 计费](https://docs.github.com/en/billing/concepts/product-billing/github-actions)
+仅在需要重新连接时操作：确认仓库和目标 `main` 分支正确、`gitbook-docs.yaml` 存在；GitBook 站点的 Git Sync 选择该仓库和分支，首次导入方向选择 **GitHub → GitBook**。确认现有 GitBook 内容不会被意外覆盖。同步完成后检查导航与公开地址。GitBook GitHub App 尽量只授予本项目仓库必要权限。
 
-## 试用期和费用
+同步失败时，依次核对 PR 是否已合并、GitBook 连接的仓库与分支、同步日志、GitHub App 权限、分支保护和站点发布状态。不要在排障时从 GitBook 反向覆盖 GitHub 现有内容。
 
-当前站点创建时处于 Ultimate 试用期。维护者应在试用结束前核实降级为免费方案的具体步骤及站点功能，不要启用需付费的功能或假定试用结束后站点会自动维持公开。若显示费用或要求支付，请先确认再操作。
+## 回滚与交接
+
+发现错误时先评估是否需要暂时撤下相关内容；在 GitHub 找到相关合并提交，使用 revert 创建撤销提交，并通过 PR 审核合并。若撤回会影响后续提交，先人工解决冲突并验证。合并后核对 GitBook 与公开页面；Git 历史不会因为回滚而消失。
+
+交接时至少确认：
+
+- GitHub 仓库管理员和维护者、GitBook 组织及站点管理员的身份和联系方式；在可用方案允许的情况下安排可靠的备用管理方式，不共享个人密码。
+- PR、审核、分支保护、GitHub App 授权与 Git Sync 状态；实际测试一条从 PR 到发布的流程。
+- 站点地址、外观配置、图标源文件、已知问题、未处理 PR 和过期内容。
+- 内容许可证和社区私下联系渠道。许可证尚未确定，维护者应在正式接收外部贡献前公布授权条款。
+- 当前套餐、试用到期时间及费用。若仍处于 Ultimate 试用期，应在到期前核实免费方案如何切换以及站点是否仍可公开访问；不要擅自启用付费功能。
+
+## 迁移和访问
+
+保留 Markdown、资源、`SUMMARY.md` 和完整 Git 历史，并定期验证备份可读取。迁移时先在新环境验证导航、链接、搜索和移动端，再通知读者；旧地址的跳转能力取决于平台与方案。校内网及移动网络的访问速度、图片和搜索功能应分别实测，不能仅凭管理后台预览判断。
+
+参考：[GitBook Git Sync 导入](https://gitbook.com/docs/guides/editing-and-publishing-documentation/import-or-migrate-your-content-to-gitbook-with-git-sync) · [GitBook 价格](https://www.gitbook.com/pricing) · [GitHub Pages 限制](https://docs.github.com/en/pages/getting-started-with-github-pages/github-pages-limits)

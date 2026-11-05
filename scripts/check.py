@@ -13,7 +13,7 @@ for file in root.rglob("*.md"):
     if ".git" in file.relative_to(root).parts:
         continue
     content = file.read_text(encoding="utf-8")
-    for target in re.findall(r"(?<!!)\[[^\]]+\]\(([^\s)]+)(?:\s+[^)]*)?\)", content):
+    for target in re.findall(r"\[[^\]]+\]\(([^\s)]+)(?:\s+[^)]*)?\)", content):
         parts = urlsplit(target.strip("<>"))
         if parts.scheme or parts.netloc or not parts.path:
             continue
@@ -23,4 +23,4 @@ for file in root.rglob("*.md"):
 if errors:
     print("\n".join(errors))
     raise SystemExit(1)
-print("Required files and local Markdown links OK (anchors and rendering not checked).")
+print("Required files and simple local Markdown links and images OK (anchors and rendering not checked).")

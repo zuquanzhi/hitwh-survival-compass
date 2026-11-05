@@ -15,6 +15,7 @@
 * [专业探索](docs/majors.md)
 * [科研与实践](docs/research.md)
 * [工具与信息](docs/tools.md)
+* [查找与判断信息](docs/information.md)
 
 ## 未来与共建
 
